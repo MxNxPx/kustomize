@@ -45,9 +45,10 @@ NSA=$DEMO_HOME/namespace-a
 mkdir $NSA
 
 cat <<EOF >$NSA/kustomization.yaml
+bases:
+- ../base
 resources:
 - namespace.yaml
-- ../base
 namespace: namespace-a
 EOF
 
@@ -66,9 +67,10 @@ NSB=$DEMO_HOME/namespace-b
 mkdir $NSB
 
 cat <<EOF >$NSB/kustomization.yaml
+bases:
+- ../base
 resources:
 - namespace.yaml
-- ../base
 namespace: namespace-b
 EOF
 
@@ -84,7 +86,7 @@ Then define a _Kustomization_ composing two variants together:
 <!-- @makeTopLayer @testAgainstLatestRelease -->
 ```
 cat <<EOF >$DEMO_HOME/kustomization.yaml
-resources:
+bases:
 - namespace-a
 - namespace-b
 EOF
